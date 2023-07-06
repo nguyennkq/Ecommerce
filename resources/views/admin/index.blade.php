@@ -5,15 +5,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+        <title>Admin</title>
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" />
-        <link rel="stylesheet" href="{{asset('admin/assets/css/backend-plugin.min.css')}}">
-        <link rel="stylesheet" href="{{asset('admin/assets/css/backend.css?v=1.0')}}.0">
-        <link rel="stylesheet" href="{{asset('admin/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}">
-        <link rel="stylesheet" href="{{asset('admin/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css')}}">
-        <link rel="stylesheet" href="{{asset('admin/assets/vendor/remixicon/fonts/remixicon.css')}}">
+        <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.ico')}}" />
+        <link rel="stylesheet" href="{{asset('backend/assets/css/backend-plugin.min.css')}}">
+        <link rel="stylesheet" href="{{asset('backend/assets/css/backend.css?v=1.0')}}.0">
+        <link rel="stylesheet" href="{{asset('backend/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}">
+        <link rel="stylesheet" href="{{asset('backend/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{asset('backend/assets/vendor/remixicon/fonts/remixicon.css')}}">
     </head>
   <body class="  ">
     <!-- loader Start -->
@@ -28,7 +28,7 @@
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="../backend/index.html" class="header-logo">
-                  <img src="{{asset('admin/assets/images/logo.png')}}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">POSDash</h5>
+                  <img src="{{asset('backend/assets/images/logo.png')}}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">POSDash</h5>
               </a>
               <div class="iq-menu-bt-sidebar ml-0">
                   <i class="las la-bars wrapper-menu"></i>
@@ -577,7 +577,7 @@
                   <div class="card border-none">
                       <div class="card-body p-0">
                           <div class="sidebarbottom-content">
-                              <div class="image"><img src="{{asset('admin/assets/images/layouts/side-bkg.png')}}" class="img-fluid" alt="side-bkg"></div>
+                              <div class="image"><img src="{{asset('backend/assets/images/layouts/side-bkg.png')}}" class="img-fluid" alt="side-bkg"></div>
                               <h6 class="mt-4 px-4 body-title">Get More Feature by Upgrading</h6>
                               <button type="button" class="btn sidebar-bottom-btn mt-4">Go Premium</button>
                           </div>
@@ -592,7 +592,7 @@
                   <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                       <i class="ri-menu-line wrapper-menu"></i>
                       <a href="../backend/index.html" class="header-logo">
-                          <img src="{{asset('admin/assets/images/logo.png')}}" class="img-fluid rounded-normal" alt="logo">
+                          <img src="{{asset('backend/assets/images/logo.png')}}" class="img-fluid rounded-normal" alt="logo">
                           <h5 class="logo-title ml-3">POSDash</h5>
 
                       </a>
@@ -615,26 +615,26 @@
                                   <a href="#" class="search-toggle dropdown-toggle btn border add-btn"
                                       id="dropdownMenuButton02" data-toggle="dropdown" aria-haspopup="true"
                                       aria-expanded="false">
-                                      <img src="{{asset('admin/assets/images/small/flag-01.png')}}" alt="img-flag"
+                                      <img src="{{asset('backend/assets/images/small/flag-01.png')}}" alt="img-flag"
                                           class="img-fluid image-flag mr-2">En
                                   </a>
                                   <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                       <div class="card shadow-none m-0">
                                           <div class="card-body p-3">
                                               <a class="iq-sub-card" href="#"><img
-                                                      src="{{asset('admin/assets/images/small/flag-02.png')}}" alt="img-flag"
+                                                      src="{{asset('backend/assets/images/small/flag-02.png')}}" alt="img-flag"
                                                       class="img-fluid mr-2">French</a>
                                               <a class="iq-sub-card" href="#"><img
-                                                      src="{{asset('admin/assets/images/small/flag-03.png')}}" alt="img-flag"
+                                                      src="{{asset('backend/assets/images/small/flag-03.png')}}" alt="img-flag"
                                                       class="img-fluid mr-2">Spanish</a>
                                               <a class="iq-sub-card" href="#"><img
-                                                      src="{{asset('admin/assets/images/small/flag-04.png')}}" alt="img-flag"
+                                                      src="{{asset('backend/assets/images/small/flag-04.png')}}" alt="img-flag"
                                                       class="img-fluid mr-2">Italian</a>
                                               <a class="iq-sub-card" href="#"><img
-                                                      src="{{asset('admin/assets/images/small/flag-05.png')}}" alt="img-flag"
+                                                      src="{{asset('backend/assets/images/small/flag-05.png')}}" alt="img-flag"
                                                       class="img-fluid mr-2">German</a>
                                               <a class="iq-sub-card" href="#"><img
-                                                      src="{{asset('admin/assets/images/small/flag-06.png')}}" alt="img-flag"
+                                                      src="{{asset('backend/assets/images/small/flag-06.png')}}" alt="img-flag"
                                                       class="img-fluid mr-2">Japanese</a>
                                           </div>
                                       </div>
@@ -687,7 +687,7 @@
                                                       <div class="media align-items-center cust-card py-3 border-bottom">
                                                           <div class="">
                                                               <img class="avatar-50 rounded-small"
-                                                                  src="{{asset('admin/assets/images/user/01.jpg')}}" alt="01">
+                                                                  src="{{asset('backend/assets/images/user/01.jpg')}}" alt="01">
                                                           </div>
                                                           <div class="media-body ml-3">
                                                               <div class="d-flex align-items-center justify-content-between">
@@ -702,7 +702,7 @@
                                                       <div class="media align-items-center cust-card py-3 border-bottom">
                                                           <div class="">
                                                               <img class="avatar-50 rounded-small"
-                                                                  src="{{asset('admin/assets/images/user/02.jpg')}}" alt="02">
+                                                                  src="{{asset('backend/assets/images/user/02.jpg')}}" alt="02">
                                                           </div>
                                                           <div class="media-body ml-3">
                                                               <div class="d-flex align-items-center justify-content-between">
@@ -717,7 +717,7 @@
                                                       <div class="media align-items-center cust-card py-3">
                                                           <div class="">
                                                               <img class="avatar-50 rounded-small"
-                                                                  src="{{asset('admin/assets/images/user/03.jpg')}}" alt="03">
+                                                                  src="{{asset('backend/assets/images/user/03.jpg')}}" alt="03">
                                                           </div>
                                                           <div class="media-body ml-3">
                                                               <div class="d-flex align-items-center justify-content-between">
@@ -762,7 +762,7 @@
                                                       <div class="media align-items-center cust-card py-3 border-bottom">
                                                           <div class="">
                                                               <img class="avatar-50 rounded-small"
-                                                                  src="{{asset('admin/assets/images/user/01.jpg')}}" alt="01">
+                                                                  src="{{asset('backend/assets/images/user/01.jpg')}}" alt="01">
                                                           </div>
                                                           <div class="media-body ml-3">
                                                               <div class="d-flex align-items-center justify-content-between">
@@ -777,7 +777,7 @@
                                                       <div class="media align-items-center cust-card py-3 border-bottom">
                                                           <div class="">
                                                               <img class="avatar-50 rounded-small"
-                                                                  src="{{asset('admin/assets/images/user/02.jpg')}}" alt="02">
+                                                                  src="{{asset('backend/assets/images/user/02.jpg')}}" alt="02">
                                                           </div>
                                                           <div class="media-body ml-3">
                                                               <div class="d-flex align-items-center justify-content-between">
@@ -792,7 +792,7 @@
                                                       <div class="media align-items-center cust-card py-3">
                                                           <div class="">
                                                               <img class="avatar-50 rounded-small"
-                                                                  src="{{asset('admin/assets/images/user/03.jpg')}}" alt="03">
+                                                                  src="{{asset('backend/assets/images/user/03.jpg')}}" alt="03">
                                                           </div>
                                                           <div class="media-body ml-3">
                                                               <div class="d-flex align-items-center justify-content-between">
@@ -815,22 +815,22 @@
                               <li class="nav-item nav-icon dropdown caption-content">
                                   <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <img src="{{asset('admin/assets/images/user/1.png')}}" class="img-fluid rounded" alt="user">
+                                      <img src="{{asset('backend/assets/images/user/1.png')}}" class="img-fluid rounded" alt="user">
                                   </a>
                                   <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       <div class="card shadow-none m-0">
                                           <div class="card-body p-0 text-center">
                                               <div class="media-body profile-detail text-center">
-                                                  <img src="{{asset('admin/assets/images/page-img/profile-bg.jpg')}}" alt="profile-bg"
+                                                  <img src="{{asset('backend/assets/images/page-img/profile-bg.jpg')}}" alt="profile-bg"
                                                       class="rounded-top img-fluid mb-4">
-                                                  <img src="{{asset('admin/assets/images/user/1.png')}}" alt="profile-img"
+                                                  <img src="{{asset('backend/assets/images/user/1.png')}}" alt="profile-img"
                                                       class="rounded profile-img img-fluid avatar-70">
                                               </div>
                                               <div class="p-3">
                                                   <h5 class="mb-1">JoanDuo@property.com</h5>
                                                   <p class="mb-0">Since 10 march, 2020</p>
                                                   <div class="d-flex align-items-center justify-content-center mt-3">
-                                                      <a href="{{asset('admin/app/user-profile.html')}}" class="btn border mr-2">Profile</a>
+                                                      <a href="{{asset('backend/app/user-profile.html')}}" class="btn border mr-2">Profile</a>
                                                       <a href="auth-sign-in.html" class="btn border">Sign Out</a>
                                                   </div>
                                               </div>
@@ -883,7 +883,7 @@
                             </ul>
                         </div>
                         <div class="col-lg-6 text-right">
-                            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">Admin</a>.
+                            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">backend</a>.
                         </div>
                     </div>
                 </div>
@@ -891,18 +891,18 @@
         </div>
     </footer>
     <!-- Backend Bundle JavaScript -->
-    <script src="{{asset('admin/assets/js/backend-bundle.min.js')}}"></script>
+    <script src="{{asset('backend/assets/js/backend-bundle.min.js')}}"></script>
 
     <!-- Table Treeview JavaScript -->
-    <script src="{{asset('admin/assets/js/table-treeview.js')}}"></script>
+    <script src="{{asset('backend/assets/js/table-treeview.js')}}"></script>
 
     <!-- Chart Custom JavaScript -->
-    <script src="{{asset('admin/assets/js/customizer.js')}}"></script>
+    <script src="{{asset('backend/assets/js/customizer.js')}}"></script>
 
     <!-- Chart Custom JavaScript -->
-    <script async src="{{asset('admin/assets/js/chart-custom.js')}}"></script>
+    <script async src="{{asset('backend/assets/js/chart-custom.js')}}"></script>
 
     <!-- app JavaScript -->
-    <script src="{{asset('admin/assets/js/app.js')}}"></script>
+    <script src="{{asset('backend/assets/js/app.js')}}"></script>
   </body>
 </html>
