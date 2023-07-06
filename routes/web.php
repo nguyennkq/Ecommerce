@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',function(){
     return view('admin.index');
+});
+
+Route::controller(CategoryController::class)->group(function (){
+    Route::get('category', 'ListCategory')->name('category.list');
 });
