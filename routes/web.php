@@ -25,4 +25,6 @@ Route::get('/',function(){
 
 Route::controller(CategoryController::class)->group(function (){
     Route::get('category', 'ListCategory')->name('category.list');
+    Route::get('category/create', 'CreateCategory')->name('category.create');
+    Route::post('category/create', 'StoreCategory')->name('category.store');
 });

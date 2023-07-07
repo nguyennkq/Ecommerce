@@ -7,7 +7,7 @@
                     <div>
                         <h4 class="mb-3">Danh sách danh mục</h4>
                     </div>
-                    <a href="" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Thêm danh mục</a>
+                    <a href="{{route('category.create')}}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Thêm danh mục</a>
                 </div>
             </div>
             <div class="col-lg-12">
