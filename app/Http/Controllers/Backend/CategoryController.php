@@ -26,6 +26,11 @@ class CategoryController extends Controller
             "category_slug" => Str::slug($ascii_slug,"-"),
         ]);
 
-        return redirect()->route('category.list');
+        $notification = array(
+            "alert-type"=>"success",
+            "message"=>"Thêm danh mục thành công"
+        );
+
+        return redirect()->route('category.list')->with($notification);
     }
 }
