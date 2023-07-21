@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,14 @@ Route::prefix('category')->group(function (){
     Route::match(['get', 'post'], 'add', [CategoryController::class, 'add'])->name('category.add');
     Route::match(['get', 'post'], 'edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::get('delete/{id}',[CategoryController::class, 'delete'])->name('category.delete');
+
+});
+
+Route::prefix('banner')->group(function (){
+    Route::get('/', [BannerController::class, 'index'])->name('banner.index');
+    Route::match(['get', 'post'], 'add', [BannerController::class, 'add'])->name('banner.add');
+    Route::match(['get', 'post'], 'edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::get('delete/{id}',[BannerController::class, 'delete'])->name('banner.delete');
 
 });
  // Route::get('category', 'ListCategory')->name('category.list');

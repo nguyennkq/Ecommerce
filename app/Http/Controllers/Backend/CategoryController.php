@@ -28,7 +28,7 @@ class CategoryController extends Controller
                 $request->category_image = uploadFile('images/category', $request->file('category_image'));
             }
 
-            $category = new Category;
+            $category = new Category();
 
             $ascii_slug = ASCII::to_ascii($request->category_name);
             $category->category_name = $request->category_name;

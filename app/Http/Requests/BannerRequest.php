@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class BannerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,12 +31,14 @@ class CategoryRequest extends FormRequest
                 switch ($currentAction) {
                     case 'add':
                         $rules = [
-                            'category_name' => 'required|unique:categories|max:255',
+                            'banner_title' => 'required',
+                            'banner_url' => 'required',
                         ];
                         break;
                     case 'edit':
                         $rules = [
-                            'category_name' => 'required|unique:categories|max:255',
+                            'banner_title' => 'required',
+                            'banner_url' => 'required',
                         ];
                         break;
                     default:
