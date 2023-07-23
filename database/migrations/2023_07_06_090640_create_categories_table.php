@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('category_name');
             $table->string('category_slug');
             $table->string('category_image')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->softDeletes();
             $table->timestamps();
         });

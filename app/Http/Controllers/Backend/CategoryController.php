@@ -63,18 +63,16 @@ class CategoryController extends Controller
             if ($request->hasFile('category_image') && $request->file('category_image')->isValid()) {
                 $img = $request->category_image = uploadFile('images/category', $request->file('category_image'));
                 // $update->update($request->except('_token'));
-                $update->update([
-                    'category_name' => $request->category_name,
-                    'category_image' => $img,
-                    'category_slug' => Str::slug($ascii_slug, "-"),
-                ]);
             } else {
+                $img = '';
                 // $update->update($request->except('_token', 'category_image'));
-                $update->update([
-                    'category_name' => $request->category_name,
-                    'category_slug' => Str::slug($ascii_slug, "-"),
-                ]);
             }
+
+            $update->update([
+                'category_name' => $request->category_name,
+                'category_image' => $img,
+                'category_slug' => Str::slug($ascii_slug, "-"),
+            ]);
             $notification = array(
                 "message" => "Update category successfully",
                 "alert-type" => "success",
@@ -85,18 +83,19 @@ class CategoryController extends Controller
         return view('admin.categories.edit', compact('detail'));
     }
 
-    public function delete($id){
-        if($id){
+    public function delete($id)
+    {
+        if ($id) {
             $category = Category::where('id', $id);
             $deleted = $category->delete();
-            if($deleted){
+            if ($deleted) {
                 $notification = array(
                     "message" => "Deleted category successfully",
                     "alert-type" => "success",
                 );
                 return redirect()->route('category.index')->with($notification);
             }
-        }else {
+        } else {
             $notification = array(
                 "message" => "Delete category failed",
                 "alert-type" => "error",
@@ -104,5 +103,31 @@ class CategoryController extends Controller
             return redirect()->back()->with($notification);
         }
         return;
+    }
+
+    public function active($id){
+        $activeCategory = Category::findOrFail($id);
+        $activeCategory -> update([
+            'status'=> 'inactive'
+        ]);
+
+        $notification = array(
+            "message" => "Category Inactive",
+            "alert-type" => "success",
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function inactive($id){
+        $inactiveCategory = Category::findOrFail($id);
+        $inactiveCategory -> update([
+            'status'=> 'active'
+        ]);
+
+        $notification = array(
+            "message" => "Category Active",
+            "alert-type" => "success",
+        );
+        return redirect()->back()->with($notification);
     }
 }
