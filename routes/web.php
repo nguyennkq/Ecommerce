@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Route::prefix('category')->group(function (){
     Route::match(['get', 'post'], 'add', [CategoryController::class, 'add'])->name('category.add');
     Route::match(['get', 'post'], 'edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::get('delete/{id}',[CategoryController::class, 'delete'])->name('category.delete');
+
+    Route::get('inactive/{id}',[CategoryController::class, 'inactive'])->name('category.inactive');
+    Route::get('active/{id}',[CategoryController::class, 'active'])->name('category.active');
 
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -35,8 +36,11 @@ class CategoryRequest extends FormRequest
                         ];
                         break;
                     case 'edit':
+                        $id = $this->route('id');
                         $rules = [
-                            'category_name' => 'required|unique:categories|max:255',
+                            'category_name' => [
+                                'required', Rule::unique('categories')->ignore($id), 'max:255',
+                            ]
                         ];
                         break;
                     default:
