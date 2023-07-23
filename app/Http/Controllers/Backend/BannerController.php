@@ -58,17 +58,15 @@ class BannerController extends Controller
             $update = Banner::where('id', $id);
             if ($request->hasFile('banner_image') && $request->file('banner_image')->isValid()) {
                 $img = $request->banner_image = uploadFile('images/banner', $request->file('banner_image'));
-                $update->update([
-                    'banner_title' => $request->banner_title,
-                    'banner_image' => $img,
-                    'banner_url' => $request->banner_url,
-                ]);
             } else {
-                $update->update([
-                    'banner_title' => $request->banner_title,
-                    'banner_url' => $request->banner_url,
-                ]);
+                $img = '';
             }
+
+            $update->update([
+                'banner_title' => $request->banner_title,
+                'banner_image' => $img,
+                'banner_url' => $request->banner_url,
+            ]);
             $notification = array(
                 "message" => "Update banner successfully",
                 "alert-type" => "success",
@@ -90,14 +88,42 @@ class BannerController extends Controller
                     "alert-type" => "success",
                 );
                 return redirect()->route('banner.index')->with($notification);
+            } else {
+                $notification = array(
+                    "message" => "Delete banner failed",
+                    "alert-type" => "success",
+                );
+                return redirect()->back()->with($notification);
             }
-        } else {
-            $notification = array(
-                "message" => "Delete banner failed",
-                "alert-type" => "success",
-            );
-            return redirect()->back()->with($notification);
         }
         return;
+    }
+
+    public function active($id)
+    {
+        $activeBanner = Banner::findOrFail($id);
+        $activeBanner->update([
+            'status' => 'inactive'
+        ]);
+
+        $notification = array(
+            "message" => "Banner Inactive",
+            "alert-type" => "success",
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function inactive($id)
+    {
+        $inactiveBanner = Banner::findOrFail($id);
+        $inactiveBanner->update([
+            'status' => 'active'
+        ]);
+
+        $notification = array(
+            "message" => "Banner Active",
+            "alert-type" => "success",
+        );
+        return redirect()->back()->with($notification);
     }
 }

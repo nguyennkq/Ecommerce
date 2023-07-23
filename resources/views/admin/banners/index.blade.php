@@ -20,6 +20,7 @@
                                 <th>Title</th>
                                 <th>URL</th>
                                 <th>Image</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -29,11 +30,29 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->banner_title }}</td>
                                     <td>{{ $item->banner_url }}</td>
+                                    <td>
+                                        @if ($item->status == 'active')
+                                            <span class="badge badge-success">Active</span>
+                                        @else
+                                            <span class="badge badge-danger">Inactive</span>
+                                        @endif
+                                    </td>
                                     <td><img width="100px" height="100px"
                                             src="{{ $item->banner_image ? Storage::url($item->banner_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
                                             alt=""></td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
+                                            @if ($item->status == 'inactive')
+                                                <a href="{{ route('banner.inactive', ['id' => $item->id]) }}"
+                                                    class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top"
+                                                    title="" data-original-title="Active" href="#"><i
+                                                        class="fa-solid fa-thumbs-up"></i></a>
+                                            @else
+                                                <a href="{{ route('banner.active', ['id' => $item->id]) }}"
+                                                    class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top"
+                                                    title="" data-original-title="Inactive" href="#"><i
+                                                        class="fa-solid fa-thumbs-down"></i></a>
+                                            @endif
                                             <a href="{{ route('banner.edit', ['id' => $item->id]) }}"
                                                 class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top"
                                                 title="" data-original-title="Edit" href="#"><i

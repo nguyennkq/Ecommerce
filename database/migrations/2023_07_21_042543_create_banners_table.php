@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('banner_title');
             $table->string('banner_url');
             $table->string('banner_image')->nullable();
+            $table->enum('status', ['active','inactive'])->default('inactive');
             $table->softDeletes();
             $table->timestamps();
         });

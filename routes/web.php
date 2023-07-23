@@ -42,6 +42,9 @@ Route::prefix('banner')->group(function (){
     Route::match(['get', 'post'], 'edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
     Route::get('delete/{id}',[BannerController::class, 'delete'])->name('banner.delete');
 
+    Route::get('inactive/{id}',[BannerController::class, 'inactive'])->name('banner.inactive');
+    Route::get('active/{id}',[BannerController::class, 'active'])->name('banner.active');
+
 });
 
 Route::prefix('product')->group(function (){
