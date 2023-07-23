@@ -17,14 +17,13 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_size')->nullable();
             $table->string('product_color')->nullable();
-            $table->string('product_image');
+            $table->string('product_image')->nullable();
             $table->string('product_slug');
             $table->integer('product_quantity');
             $table->float('selling_price');
             $table->float('discount_price');
-            $table->string('short_description');
-            $table->text('long_description');
-            $table->enum('status',['active','inactive'])->default('active');
+            $table->text('description')->nullable();
+            $table->enum('status',['active','inactive'])->default('inactive');
             $table->softDeletes();
             $table->timestamps();
         });

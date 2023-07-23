@@ -94,21 +94,22 @@ class CategoryController extends Controller
                     "alert-type" => "success",
                 );
                 return redirect()->route('category.index')->with($notification);
+            } else {
+                $notification = array(
+                    "message" => "Delete category failed",
+                    "alert-type" => "error",
+                );
+                return redirect()->back()->with($notification);
             }
-        } else {
-            $notification = array(
-                "message" => "Delete category failed",
-                "alert-type" => "error",
-            );
-            return redirect()->back()->with($notification);
         }
         return;
     }
 
-    public function active($id){
+    public function active($id)
+    {
         $activeCategory = Category::findOrFail($id);
-        $activeCategory -> update([
-            'status'=> 'inactive'
+        $activeCategory->update([
+            'status' => 'inactive'
         ]);
 
         $notification = array(
@@ -118,10 +119,11 @@ class CategoryController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function inactive($id){
+    public function inactive($id)
+    {
         $inactiveCategory = Category::findOrFail($id);
-        $inactiveCategory -> update([
-            'status'=> 'active'
+        $inactiveCategory->update([
+            'status' => 'active'
         ]);
 
         $notification = array(

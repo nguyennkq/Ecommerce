@@ -17,34 +17,26 @@ class CategorySeeder extends Seeder
     {
         // Category::factory()->count(5)->create();
         DB::table('categories')->insert([
-            'category_name'=> 'Sét nam',
-            'category_slug'=> 'set-nam',
-            'category_image'=> 'https://picsum.photos/seed/picsum/200/300',
-
+            [
+                'category_name' => 'Sét nam',
+                'category_slug' => 'set-nam',
+            ],
+            [
+                'category_name' => 'Sét nữ',
+                'category_slug' => 'set-nu',
+            ],
+            [
+                'category_name' => 'Sét nam nữ',
+                'category_slug' => 'set-nam-nu',
+            ],
+            [
+                'category_name' => 'Áo sơ mi',
+                'category_slug' => 'ao-so-mi',
+            ],
+            [
+                'category_name' => 'Quần jean',
+                'category_slug' => 'quan-jean',
+            ]
         ]);
-    DB::table('categories')->insert([
-        'category_name'=> 'Sét nữ',
-        'category_slug'=> 'set-nu',
-        'category_image'=> 'https://picsum.photos/200/300?grayscale',
-    ]);
-    DB::table('categories')->insert([
-        'category_name'=> 'Sét nam nữ',
-        'category_slug'=> 'set-nam-nu',
-        'category_image'=> 'https://picsum.photos/200/300?grayscale',
-    ]);
-
-    DB::table('categories')->insert([
-        'category_name'=> 'Áo sơ mi',
-        'category_slug'=> 'ao-so-mi',
-        'category_image'=> 'https://picsum.photos/200/300?grayscale',
-    ]);
-
-    DB::table('categories')->insert([
-        'category_name'=> 'Quần jean',
-        'category_slug'=> 'quan-jean',
-        'category_image'=> 'https://picsum.photos/200/300?grayscale',
-    ]);
-
-
     }
 }

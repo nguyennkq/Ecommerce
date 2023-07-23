@@ -43,6 +43,17 @@ Route::prefix('banner')->group(function (){
     Route::get('delete/{id}',[BannerController::class, 'delete'])->name('banner.delete');
 
 });
+
+Route::prefix('product')->group(function (){
+    Route::get('/', [ProductController::class, 'index'])->name('product.index');
+    Route::match(['get', 'post'], 'add', [ProductController::class, 'add'])->name('product.add');
+    Route::match(['get', 'post'], 'edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('delete/{id}',[ProductController::class, 'delete'])->name('product.delete');
+
+    Route::get('inactive/{id}',[ProductController::class, 'inactive'])->name('product.inactive');
+    Route::get('active/{id}',[ProductController::class, 'active'])->name('product.active');
+
+});
  // Route::get('category', 'ListCategory')->name('category.list');
     // Route::get('category/create', 'CreateCategory')->name('category.create');
     // Route::post('category/create', 'StoreCategory')->name('category.store');

@@ -14,24 +14,25 @@ class MultiImageSeeder extends Seeder
     public function run(): void
     {
         DB::table('multi_images')->insert([
-            'product_id' => 1,
-            'image' => 'https://picsum.photos/200/300',
-        ]);
-        DB::table('multi_images')->insert([
-            'product_id' => 3,
-            'image' => 'https://picsum.photos/200/100',
-        ]);
-        DB::table('multi_images')->insert([
-            'product_id' => 4,
-            'image' => 'https://picsum.photos/200/200',
-        ]);
-        DB::table('multi_images')->insert([
-            'product_id' => 5,
-            'image' => 'https://picsum.photos/200/400',
-        ]);
-        DB::table('multi_images')->insert([
-            'product_id' => '6',
-            'image' => 'https://picsum.photos/200/500',
+            [
+                'product_id' => 1,
+                'image' => 'https://picsum.photos/200/300',
+            ],
+            [
+                'product_id' => 3,
+                'image' => 'https://picsum.photos/200/100',
+            ], [
+                'product_id' => 4,
+                'image' => 'https://picsum.photos/200/200',
+            ],
+            [
+                'product_id' => 5,
+                'image' => 'https://picsum.photos/200/400',
+            ],
+            [
+                'product_id' => '6',
+                'image' => 'https://picsum.photos/200/500',
+            ]
         ]);
     }
 }
