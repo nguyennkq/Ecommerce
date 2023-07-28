@@ -27,8 +27,7 @@ class OrderSeeder extends Seeder
                     'order_no' => 'ok1',
                     'invoice_no' => 'no1',
                     'date' => '2023/07/26',
-                    'status' => 'new',
-                    'transaction' => 'transaction1',
+                    'status' => 'pending',
                     'user_id' => '1',
                 ],
                 [
@@ -43,8 +42,7 @@ class OrderSeeder extends Seeder
                     'order_no' => 'ok2',
                     'invoice_no' => 'no2',
                     'date' => '2023/07/26',
-                    'status' => 'new',
-                    'transaction' => 'transaction2',
+                    'status' => 'pending',
                     'user_id' => '2',
                 ],
                 [
@@ -59,8 +57,7 @@ class OrderSeeder extends Seeder
                     'order_no' => 'ok3',
                     'invoice_no' => 'no3',
                     'date' => '2023/07/26',
-                    'status' => 'new',
-                    'transaction' => 'transaction3',
+                    'status' => 'pending',
                     'user_id' => '3',
                 ],
                 [
@@ -75,8 +72,7 @@ class OrderSeeder extends Seeder
                     'order_no' => 'ok4',
                     'invoice_no' => 'no4',
                     'date' => '2023/07/26',
-                    'status' => 'new',
-                    'transaction' => 'transaction4',
+                    'status' => 'pending',
                     'user_id' => '4',
                 ],
                 [
@@ -91,8 +87,7 @@ class OrderSeeder extends Seeder
                     'order_no' => 'ok5',
                     'invoice_no' => 'no5',
                     'date' => '2023/07/26',
-                    'status' => 'new',
-                    'transaction' => 'transaction5',
+                    'status' => 'pending',
                     'user_id' => '5',
                 ]
             ]

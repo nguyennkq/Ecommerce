@@ -24,8 +24,7 @@ return new class extends Migration
             $table->string('order_no')->unique();
             $table->string('invoice_no')->unique();
             $table->date('date');
-            $table->enum('status',['new','process','delivered','cancel'])->default('new');
-            $table->string('transaction');
+            $table->enum('status',['pending','process','delivered','cancel'])->default('pending');
             $table->integer('user_id');
             $table->softDeletes();
             $table->timestamps();
