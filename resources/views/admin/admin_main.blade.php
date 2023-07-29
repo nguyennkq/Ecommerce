@@ -7,16 +7,16 @@
     <title>Admin</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}" />
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/backend-plugin.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/backend.css?v=1.0') }}.0">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}">
+    <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/backend-plugin.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/backend.css?v=1.0') }}.0">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet"
-        href="{{ asset('backend/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/remixicon/fonts/remixicon.css') }}">
+        href="{{ asset('admin/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/remixicon/fonts/remixicon.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/tagsinput.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/tagsinput.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
@@ -41,19 +41,19 @@
     @include('admin.body.footer')
 
     <!-- Backend Bundle JavaScript -->
-    <script src="{{ asset('backend/assets/js/backend-bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/backend-bundle.min.js') }}"></script>
 
     <!-- Table Treeview JavaScript -->
-    <script src="{{ asset('backend/assets/js/table-treeview.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/table-treeview.js') }}"></script>
 
     <!-- Chart Custom JavaScript -->
-    <script src="{{ asset('backend/assets/js/customizer.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/customizer.js') }}"></script>
 
     <!-- Chart Custom JavaScript -->
-    <script async src="{{ asset('backend/assets/js/chart-custom.js') }}"></script>
+    <script async src="{{ asset('admin/assets/js/chart-custom.js') }}"></script>
 
     <!-- app JavaScript -->
-    <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 
     {{-- <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script> --}}
     <script src="{{ asset('upload_file/jquery/dist/jquery.min.js') }}"></script>
@@ -79,16 +79,16 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="{{ asset('backend/assets/js/code.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/code.js') }}"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script type="text/javascript" src="{{ asset('backend/assets/js/tagsinput.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/tagsinput.js') }}"></script>
 
 
     <script>
         @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}"
+            let type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
                     toastr.info(" {{ Session::get('message') }} ");

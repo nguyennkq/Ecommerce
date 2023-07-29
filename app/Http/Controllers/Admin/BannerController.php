@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,6 +8,7 @@ use App\Models\Banner;
 use App\Http\Requests\BannerRequest;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Illuminate\Support\Composer;
 
 class BannerController extends Controller
 {
@@ -87,16 +88,14 @@ class BannerController extends Controller
                     "message" => "Deleted banner successfully",
                     "alert-type" => "success",
                 );
-                return redirect()->route('banner.index')->with($notification);
             } else {
                 $notification = array(
                     "message" => "Delete banner failed",
                     "alert-type" => "success",
                 );
-                return redirect()->back()->with($notification);
             }
         }
-        return;
+        return redirect()->back()->with($notification);
     }
 
     public function active($id)
@@ -124,6 +123,30 @@ class BannerController extends Controller
             "message" => "Banner Active",
             "alert-type" => "success",
         );
+        return redirect()->back()->with($notification);
+    }
+
+    public function deleted(){
+        $banner = Banner::onlyTrashed()->get();
+        return view('admin.banners.delete', compact('banner'));
+    }
+
+    public function restore($id){
+        $softDeletedBanner = Banner::onlyTrashed()->find($id);
+
+        if($softDeletedBanner){
+            $softDeletedBanner->restore();
+            $notification = array(
+                "message" => "Banner restore successfully",
+                "alert-type" => "success",
+            );
+        }else {
+            $notification = array(
+                "message" => "Banner restore failed",
+                "alert-type" => "error",
+            );
+        }
+
         return redirect()->back()->with($notification);
     }
 }

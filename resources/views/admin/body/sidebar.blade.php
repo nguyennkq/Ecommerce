@@ -1,7 +1,7 @@
 <div class="iq-sidebar sidebar-default">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
         <a href="" class="header-logo">
-            <img src="{{ asset('backend/assets/images/logo.png') }}" class="img-fluid rounded-normal light-logo"
+            <img src="{{ asset('admin/assets/images/logo.png') }}" class="img-fluid rounded-normal light-logo"
                 alt="logo">
             <h5 class="logo-title light-logo ml-3">Sun Shopping</h5>
         </a>
@@ -99,6 +99,11 @@
                                 <i class="las la-minus"></i><span>List</span>
                             </a>
                         </li>
+                        <li class="">
+                            <a href="{{ route('banner.deleted') }}">
+                                <i class="las la-minus"></i><span>Deleted</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -112,7 +117,7 @@
             <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                 <i class="ri-menu-line wrapper-menu"></i>
                 <a href="" class="header-logo">
-                    <img src="{{ asset('backend/assets/images/logo.png') }}" class="img-fluid rounded-normal"
+                    <img src="{{ asset('admin/assets/images/logo.png') }}" class="img-fluid rounded-normal"
                         alt="logo">
                     <h5 class="logo-title ml-3">Sun Shopping</h5>
                 </a>
@@ -120,7 +125,7 @@
             <div class="iq-search-bar device-search">
                 <form action="#" class="searchbox">
                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                    <input type="text" class="text search-input" placeholder="Tìm kiếm...">
+                    <input type="text" class="text search-input" placeholder="Search...">
                 </form>
             </div>
             <div class="d-flex align-items-center">
@@ -149,23 +154,23 @@
                         <li class="nav-item nav-icon dropdown caption-content">
                             <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('backend/assets/images/user/1.png') }}" class="img-fluid rounded"
+                                <img src="{{ asset('admin/assets/images/user/1.png') }}" class="img-fluid rounded"
                                     alt="user">
                             </a>
                             <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <div class="card shadow-none m-0">
                                     <div class="card-body p-0 text-center">
                                         <div class="media-body profile-detail text-center">
-                                            <img src="{{ asset('backend/assets/images/page-img/profile-bg.jpg') }}"
+                                            <img src="{{ asset('admin/assets/images/page-img/profile-bg.jpg') }}"
                                                 alt="profile-bg" class="rounded-top img-fluid mb-4">
-                                            <img src="{{ asset('backend/assets/images/user/1.png') }}"
+                                            <img src="{{ asset('admin/assets/images/user/1.png') }}"
                                                 alt="profile-img" class="rounded profile-img img-fluid avatar-70">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="mb-1">JoanDuo@property.com</h5>
                                             <p class="mb-0">Since 10 march, 2020</p>
                                             <div class="d-flex align-items-center justify-content-center mt-3">
-                                                <a href="{{ asset('backend/app/user-profile.html') }}"
+                                                <a href="{{ asset('admin/app/user-profile.html') }}"
                                                     class="btn border mr-2">Profile</a>
                                                 <a href="auth-sign-in.html" class="btn border">Sign Out</a>
                                             </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -105,16 +105,15 @@ class ProductController extends Controller
                     "message" => "Deleted Product successfully",
                     "alert-type" => "success",
                 );
-                return redirect()->route('product.index')->with($notification);
             } else {
                 $notification = array(
                     "message" => "Delete product failed",
                     "alert-type" => "error",
                 );
-                return redirect()->back()->with($notification);
+
             }
         }
-        return;
+        return redirect()->back()->with($notification);
     }
 
 
@@ -144,5 +143,9 @@ class ProductController extends Controller
             "alert-type" => "success",
         );
         return redirect()->back()->with($notification);
+    }
+
+    public function shop(){
+        return view('client.products.index');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
@@ -93,16 +93,15 @@ class CategoryController extends Controller
                     "message" => "Deleted category successfully",
                     "alert-type" => "success",
                 );
-                return redirect()->route('category.index')->with($notification);
             } else {
                 $notification = array(
                     "message" => "Delete category failed",
                     "alert-type" => "error",
                 );
-                return redirect()->back()->with($notification);
             }
         }
-        return;
+        return redirect()->back()->with($notification);
+
     }
 
     public function active($id)

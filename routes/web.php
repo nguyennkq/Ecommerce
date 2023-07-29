@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\BannerController;
-use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,10 @@ use App\Http\Controllers\Backend\ProductController;
 // });
 
 
-Route::get('/',function(){
-    return view('admin.index');
-});
+// Route::get('/',function(){
+//     return view('admin.index');
+// });
+Route::get('/', [HomeController::class, 'index'])->name('client.home');
 
 Route::prefix('category')->group(function (){
     Route::get('/', [CategoryController::class, 'index'])->name('category.index');
@@ -38,6 +40,9 @@ Route::prefix('category')->group(function (){
 
 Route::prefix('banner')->group(function (){
     Route::get('/', [BannerController::class, 'index'])->name('banner.index');
+    Route::get('/deleted', [BannerController::class, 'deleted'])->name('banner.deleted');
+    Route::get('/restore/{id}', [BannerController::class, 'restore'])->name('banner.restore');
+
     Route::match(['get', 'post'], 'add', [BannerController::class, 'add'])->name('banner.add');
     Route::match(['get', 'post'], 'edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
     Route::get('delete/{id}',[BannerController::class, 'delete'])->name('banner.delete');
@@ -55,6 +60,8 @@ Route::prefix('product')->group(function (){
 
     Route::get('inactive/{id}',[ProductController::class, 'inactive'])->name('product.inactive');
     Route::get('active/{id}',[ProductController::class, 'active'])->name('product.active');
+
+    Route::get('shop', [ProductController::class, 'shop'])->name('shop');
 
 });
  // Route::get('category', 'ListCategory')->name('category.list');

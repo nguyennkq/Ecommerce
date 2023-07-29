@@ -17,9 +17,9 @@
                         <thead>
                             <tr class="ligth">
                                 <th>#</th>
+                                <th>Image</th>
                                 <th>Title</th>
                                 <th>URL</th>
-                                <th>Image</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -28,6 +28,9 @@
                             @foreach ($banner as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
+                                    <td><img width="100px" height="100px"
+                                            src="{{ $item->banner_image ? Storage::url($item->banner_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
+                                            alt=""></td>
                                     <td>{{ $item->banner_title }}</td>
                                     <td>{{ $item->banner_url }}</td>
                                     <td>
@@ -37,9 +40,7 @@
                                             <span class="badge badge-danger">Inactive</span>
                                         @endif
                                     </td>
-                                    <td><img width="100px" height="100px"
-                                            src="{{ $item->banner_image ? Storage::url($item->banner_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
-                                            alt=""></td>
+
                                     <td>
                                         <div class="d-flex align-items-center list-action">
                                             @if ($item->status == 'inactive')
