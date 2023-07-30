@@ -9,6 +9,7 @@ use App\Http\Requests\BannerRequest;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Composer;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -58,9 +59,10 @@ class BannerController extends Controller
 
             $update = Banner::where('id', $id);
             if ($request->hasFile('banner_image') && $request->file('banner_image')->isValid()) {
+                Storage::delete('/public/' .$detail->banner_image);
                 $img = $request->banner_image = uploadFile('images/banner', $request->file('banner_image'));
             } else {
-                $img = '';
+                $img = $detail->banner_image;
             }
 
             $update->update([

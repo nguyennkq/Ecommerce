@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use voku\helper\ASCII;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -61,10 +62,11 @@ class CategoryController extends Controller
 
             $update = Category::where('id', $id);
             if ($request->hasFile('category_image') && $request->file('category_image')->isValid()) {
+                Storage::delete('/public/' .$detail->category_image);
                 $img = $request->category_image = uploadFile('images/category', $request->file('category_image'));
                 // $update->update($request->except('_token'));
             } else {
-                $img = '';
+                $img = $detail->category_image;
                 // $update->update($request->except('_token', 'category_image'));
             }
 
@@ -130,5 +132,12 @@ class CategoryController extends Controller
             "alert-type" => "success",
         );
         return redirect()->back()->with($notification);
+    }
+
+    public function productCategory($slug){
+        $productCate = Category::where('category_slug', $slug)->first();
+
+        $products = Product::where('category_id', $productCate->id)->where('status','active')->get();
+        return view('client.products.product-category', compact("products"));
     }
 }

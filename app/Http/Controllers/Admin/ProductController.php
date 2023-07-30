@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use voku\helper\ASCII;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
@@ -70,9 +71,10 @@ class ProductController extends Controller
 
             $update = Product::where('id', $id);
             if ($request->hasFile('product_image') && $request->file('product_image')->isValid()) {
+                Storage::delete('/public/' .$detail->product_image);
                 $img = $request->product_image = uploadFile('images/product', $request->file('product_image'));
             } else {
-                $img = '';
+                $img = $detail->product_image;
             }
             $update->update([
                 'category_id' => $request->category_id,
@@ -146,7 +148,8 @@ class ProductController extends Controller
     }
 
     public function shop(){
-        return view('client.products.index');
+        $products = Product::where('status', 'active')->get();
+        return view('client.products.index', compact('products'));
     }
 
     public function productDetail($slug){
