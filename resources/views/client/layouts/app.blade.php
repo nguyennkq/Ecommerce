@@ -51,6 +51,15 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('client/js/main.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#header-carousel').on('slide', function(event) {
+                let activeSlide = event.to;
+                $(this).find('.carousel-item').removeClass('active');
+                $(this).find('.carousel-item').eq(activeSlide).addClass('active');
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -148,4 +148,9 @@ class ProductController extends Controller
     public function shop(){
         return view('client.products.index');
     }
+
+    public function productDetail($slug){
+        $product_detail = Product::where('product_slug', $slug)->first();
+        return view('client.products.detail', compact('product_detail'));
+    }
 }
