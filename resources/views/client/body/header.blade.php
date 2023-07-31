@@ -36,7 +36,7 @@
      </div>
      <div class="row align-items-center py-3 px-xl-5">
          <div class="col-lg-3 d-none d-lg-block">
-             <a href="" class="text-decoration-none">
+             <a href="{{route('client.home')}}" class="text-decoration-none">
                  <h1 class="m-0 display-5 font-weight-semi-bold"><span
                          class="text-primary font-weight-bold border px-3 mr-1">Sun</span>Shopping</h1>
              </a>
@@ -82,7 +82,7 @@
                  id="navbar-vertical">
                  <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                      @foreach ($categories as $item)
-                         <a href="" class="nav-item nav-link">{{$item->category_name}}</a>
+                         <a href="{{route('category.product', ['slug' => $item->category_slug])}}" class="nav-item nav-link">{{$item->category_name}}</a>
                      @endforeach
                  </div>
              </nav>

@@ -1,6 +1,5 @@
 @extends('client.layouts.app')
 @section('content')
-
     <!-- Categories Start -->
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
@@ -65,7 +64,7 @@
                     <div class="card product-item border-0 mb-4">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                             <img class="img-fluid w-100"
-                                src="{{ $product->product_image ? Storage::url($product->image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
+                                src="{{ $product->product_image ? Storage::url($product->product_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
                                 alt="">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">

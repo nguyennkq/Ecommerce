@@ -97,7 +97,7 @@
                                             class="form-control image-file @error('product_image') is-invalid @enderror"
                                             name="product_image" accept="image/*">
                                         <img id="image_preview"
-                                            src="{{ $detail->category_image ? Storage::url($detail->category_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
+                                            src="{{ $detail->product_image ? Storage::url($detail->product_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
                                             alt="" width="100px">
                                     </div>
                                 </div>
@@ -115,5 +115,44 @@
             </div>
         </div>
         <!-- Page end  -->
+        <div class="page-content">
+            <h6 class="mb-0 text-uppercase">Update Multi Image </h6>
+            <hr>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table mb-0 table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Change Image </th>
+                                <th scope="col">Delete </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <form method="post" action="{{ route('edit.image') }}" enctype="multipart/form-data">
+                                @csrf
+                                @foreach ($multiImgs as $key => $item)
+                                    <tr>
+                                        <th scope="row">{{ $key + 1 }}</th>
+                                        <td> <img
+                                                src="{{ $item->image ? Storage::url($item->image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
+                                                style="width:70; height: 40px;"></td>
+                                        <td> <input type="file" class="form-group" name="image[{{ $item->id }}]">
+                                        </td>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary px-4" value="Update Image " />
+                                            <a id="delete" href="{{ route('delete.image', ['id' => $item->id]) }}" class="btn btn-danger" id="delete">
+                                                Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

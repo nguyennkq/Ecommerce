@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
+use App\Models\MultiImage;
 
 class ProductController extends Controller
 {
@@ -48,6 +49,25 @@ class ProductController extends Controller
 
             $product->save();
 
+            $productId = $product->id;
+
+
+
+            if ($request->hasFile('image')) {
+                $images = $request->file('image');
+                foreach ($images as $image) {
+                    if ($image->isValid()) {
+                        $fileName = uploadFile('images/multi-image', $image);
+
+                        $imgs = new MultiImage();
+                        $imgs->product_id = $productId;
+                        $imgs->image = $fileName;
+
+                        $imgs->save();
+                    }
+                }
+            }
+
             if ($product->save()) {
                 $notification = array(
                     "message" => "Add product successfully",
@@ -59,8 +79,10 @@ class ProductController extends Controller
         return view('admin.products.add', compact('category'));
     }
 
-    public function edit(ProductRequest $request, $id)
+
+    public function edit(Request $request, $id)
     {
+        $multiImgs = MultiImage::where('product_id', $id)->get();
         $detail = Product::findOrFail($id);
         $category = Category::all();
         if ($request->isMethod('post')) {
@@ -71,7 +93,7 @@ class ProductController extends Controller
 
             $update = Product::where('id', $id);
             if ($request->hasFile('product_image') && $request->file('product_image')->isValid()) {
-                Storage::delete('/public/' .$detail->product_image);
+                Storage::delete('/public/' . $detail->product_image);
                 $img = $request->product_image = uploadFile('images/product', $request->file('product_image'));
             } else {
                 $img = $detail->product_image;
@@ -94,8 +116,77 @@ class ProductController extends Controller
             );
             return redirect()->route('product.index')->with($notification);
         }
-        return view('admin.products.edit', compact('detail', 'category'));
+        return view('admin.products.edit', compact('detail', 'category', 'multiImgs'));
     }
+
+    public function editMultiImage(Request $request)
+    {
+        // $imgs = $request->image;
+        // dd($imgs);
+        if ($request->isMethod('post')) {
+            $params = $request->post();
+            unset($params['_token']);
+
+            // Check if 'image' files were uploaded
+            if ($request->hasFile('image')) {
+                $imgs = $request->file('image');
+                foreach ($imgs as $id => $img) {
+                    $update = MultiImage::findOrFail($id);
+
+                    if ($img->isValid()) {
+                        Storage::delete('/public/' . $update->image);
+
+                        $fileName = uploadFile('images/multi-image', $img);
+
+                        $multi = $request->image = $fileName;
+                    } else {
+                        $multi = $update->image; // Use the existing image if no new image was uploaded
+                    }
+
+                    MultiImage::where('id', $id)->update([
+                        'image' => $multi
+                    ]);
+                }
+            }
+
+            $notification = [
+                'message' => 'Update MultiImage successfully',
+                'alert-type' => 'success',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
+
+
+    public function deleteMultiImage($id)
+    {
+        if ($id) {
+            $image = MultiImage::find($id);
+
+            if ($image) {
+                Storage::delete('/public/' . $image->image);
+                $deleted = $image->delete();
+                if ($deleted) {
+                    $notification = array(
+                        "message" => "Deleted MultiImage successfully",
+                        "alert-type" => "success",
+                    );
+                } else {
+                    $notification = array(
+                        "message" => "Delete MultiImage failed",
+                        "alert-type" => "error",
+                    );
+                }
+            } else {
+                $notification = array(
+                    "message" => "MultiImage not found",
+                    "alert-type" => "error",
+                );
+            }
+            return redirect()->back()->with($notification);
+        }
+    }
+
 
     public function delete($id)
     {
@@ -112,7 +203,6 @@ class ProductController extends Controller
                     "message" => "Delete product failed",
                     "alert-type" => "error",
                 );
-
             }
         }
         return redirect()->back()->with($notification);
@@ -147,13 +237,17 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function shop(){
+    public function shop()
+    {
         $products = Product::where('status', 'active')->get();
         return view('client.products.index', compact('products'));
     }
 
-    public function productDetail($slug){
+    public function productDetail($slug)
+    {
         $product_detail = Product::where('product_slug', $slug)->first();
-        return view('client.products.detail', compact('product_detail'));
+        $product_id = $product_detail->id;
+        $multiImage = MultiImage::where('product_id', $product_id)->get();
+        return view('client.products.detail', compact('product_detail', 'multiImage'));
     }
 }

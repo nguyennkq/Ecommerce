@@ -6,22 +6,6 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ProductController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 // Route::get('/',function(){
 //     return view('admin.index');
 // });
@@ -36,6 +20,8 @@ Route::prefix('category')->group(function () {
 
     Route::get('inactive/{id}', [CategoryController::class, 'inactive'])->name('category.inactive');
     Route::get('active/{id}', [CategoryController::class, 'active'])->name('category.active');
+
+    Route::get('{slug}', [CategoryController::class, 'productCategory'])->name('category.product');
 });
 
 Route::prefix('banner')->group(function () {
@@ -62,7 +48,14 @@ Route::prefix('product')->group(function () {
 
     Route::get('shop', [ProductController::class, 'shop'])->name('client.shop');
     Route::get('/product-detail/{slug}', [ProductController::class, 'productDetail'])->name('product.detail');
+
+    // Route::post('edit/image', [ProductController::class, 'editMultiImage'])->name('edit.image');
+
+    Route::get('/delete/image/{id}', [ProductController::class, 'deleteMultiImage'])->name('delete.image');
+
 });
+
+Route::post('/edit/image', [ProductController::class, 'editMultiImage'])->name('edit.image');
  // Route::get('category', 'ListCategory')->name('category.list');
     // Route::get('category/create', 'CreateCategory')->name('category.create');
     // Route::post('category/create', 'StoreCategory')->name('category.store');

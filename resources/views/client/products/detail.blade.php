@@ -16,24 +16,19 @@
             <div class="col-lg-5 pb-5">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner border">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" src="img/product-1.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-2.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-3.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-4.jpg" alt="Image">
-                        </div>
+                        @foreach ($multiImage as $key => $item)
+                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                <img class="w-100"
+                                    src="{{ $item->image ? Storage::url($item->image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
+                                    alt="Image" height="400px">
+                            </div>
+                        @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                        <i class="fa fa-2x fa-angle-left text-dark"></i>
+                        <i class="fa fa-2x fa-angle-left text-primary"></i>
                     </a>
                     <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                        <i class="fa fa-2x fa-angle-right text-dark"></i>
+                        <i class="fa fa-2x fa-angle-right text-primary"></i>
                     </a>
                 </div>
             </div>
@@ -75,7 +70,7 @@
                         @foreach ($colors as $color)
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="color-1" name="color">
-                                <label class="custom-control-label" for="color-1">{{$color}}</label>
+                                <label class="custom-control-label" for="color-1">{{ $color }}</label>
                             </div>
                         @endforeach
                     @endif

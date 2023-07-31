@@ -19,7 +19,9 @@
                                         <select name="category_id" class="form-control" data-style="py-0">
                                             <option></option>
                                             @foreach ($category as $item)
-                                                <option value="{{ $item->id }}" @if(old('category_id') == $item->id) selected @endif>{{ $item->category_name }}</option>
+                                                <option value="{{ $item->id }}"
+                                                    @if (old('category_id') == $item->id) selected @endif>
+                                                    {{ $item->category_name }}</option>
                                             @endforeach
                                         </select>
                                         @error('category_id')
@@ -30,7 +32,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input name="product_name" type="text" class="form-control" value="{{old('product_name')}}">
+                                        <input name="product_name" type="text" class="form-control"
+                                            value="{{ old('product_name') }}">
                                         @error('product_name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -39,7 +42,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Quantity</label>
-                                        <input name="product_quantity" type="number" class="form-control" value="{{old('product_quantity')}}">
+                                        <input name="product_quantity" type="number" class="form-control"
+                                            value="{{ old('product_quantity') }}">
                                         @error('product_quantity')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -49,7 +53,7 @@
                                     <div class="form-group">
                                         <label>Size</label>
                                         <input name="product_size" type="text" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="S,M,L" value="{{old('product_size')}}">
+                                            data-role="tagsinput" value="S,M,L" value="{{ old('product_size') }}">
                                         @error('product_size')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -59,7 +63,7 @@
                                     <div class="form-group">
                                         <label>Color</label>
                                         <input name="product_color" type="text" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="Black, White" value="{{old('product_color')}}">
+                                            data-role="tagsinput" value="Black, White" value="{{ old('product_color') }}">
                                         @error('product_color')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -68,7 +72,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Selling Price</label>
-                                        <input name="selling_price" type="number" class="form-control" value="{{old('selling_price')}}">
+                                        <input name="selling_price" type="number" class="form-control"
+                                            value="{{ old('selling_price') }}">
                                         @error('selling_price')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -77,7 +82,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Discount Price</label>
-                                        <input name="discount_price" type="number" class="form-control" value="{{old('discount_price')}}">
+                                        <input name="discount_price" type="number" class="form-control"
+                                            value="{{ old('discount_price') }}">
                                         @error('discount_price')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -92,6 +98,14 @@
                                         <img id="image_preview"
                                             src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg"
                                             alt="" width="100px">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputProductTitle" class="form-label">Multiple Image</label>
+                                        <input class="form-control image-file" name="image[]" type="file" id="multiImg"
+                                            multiple="">
+                                        <div class="row" id="preview_img"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
