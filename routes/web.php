@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Admin\CouponController;
 
 // Route::get('/',function(){
 //     return view('admin.index');
@@ -66,3 +67,22 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/get-cart-product', 'getCart')->name('client.getCart');
     // Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 });
+
+Route::prefix('coupon')->group(function () {
+    Route::get('/', [CouponController::class, 'index'])->name('coupon.index');
+    Route::match(['get', 'post'], 'add', [CouponController::class, 'add'])->name('coupon.add');
+    Route::match(['get', 'post'], 'edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
+    Route::get('delete/{id}', [CouponController::class, 'delete'])->name('coupon.delete');
+
+    Route::get('inactive/{id}', [CouponController::class, 'inactive'])->name('coupon.inactive');
+    Route::get('active/{id}', [CouponController::class, 'active'])->name('coupon.active');
+
+    Route::get('/deleted', [CouponController::class, 'deleted'])->name('coupon.deleted');
+    Route::get('/restore/{id}', [CouponController::class, 'restore'])->name('coupon.restore');
+
+    Route::get('delete/permanently/{id}', [CouponController::class, 'permanentlyDelete'])->name('coupon.permanently.delete');
+
+
+});
+
+

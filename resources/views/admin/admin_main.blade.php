@@ -140,6 +140,41 @@
             }
         @endif
     </script>
+    <script>
+         // Get references to the start_date and end_date input elements
+    const startDateInput = document.getElementById('start_date');
+    const endDateInput = document.getElementById('end_date');
+
+    // Add an event listener to the start_date input to handle changes
+    startDateInput.addEventListener('change', function() {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+
+        // If the end_date is earlier than or the same as the start_date, set it to the next day of start_date
+        if (endDate <= startDate) {
+            startDate.setDate(startDate.getDate() + 1);
+            endDateInput.valueAsDate = startDate;
+        }
+
+        // Set the min attribute of the end_date input to the selected start_date to prevent selecting earlier dates
+        endDateInput.min = startDateInput.value;
+    });
+
+    // Add an event listener to the end_date input to handle changes
+    endDateInput.addEventListener('change', function() {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+
+        // If the end_date is earlier than or the same as the start_date, set it to the next day of start_date
+        if (endDate <= startDate) {
+            startDate.setDate(startDate.getDate() + 1);
+            endDateInput.valueAsDate = startDate;
+        }
+
+        // Set the min attribute of the end_date input to the selected start_date to prevent selecting earlier dates
+        endDateInput.min = startDateInput.value;
+    });
+    </script>
 
 </body>
 

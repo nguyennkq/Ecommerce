@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('discount');
-            $table->string('validity');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->enum('type',['fixed','percent'])->default('fixed');
             $table->enum('status',['active','inactive'])->default('inactive');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
