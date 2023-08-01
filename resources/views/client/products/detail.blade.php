@@ -34,7 +34,8 @@
             </div>
 
             <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold">{{ $product_detail->product_name }}</h3>
+                <h3 class="font-weight-semi-bold" id="name">{{ $product_detail->product_name }}</h3>
+                <input type="hidden" id="product_id" value="{{ $product_detail->id }}">
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -53,10 +54,12 @@
                         @php
                             $sizes = explode(',', $product_detail->product_size);
                         @endphp
-                        @foreach ($sizes as $size)
+                        @foreach ($sizes as $index => $size)
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" name="size">
-                                <label class="custom-control-label" for="size-1">{{ $size }}</label>
+                                <input type="radio" class="custom-control-input" id="size-{{ $index }}"
+                                    name="size" value="{{$size}}">
+                                <label class="custom-control-label"
+                                    for="size-{{ $index }}">{{ $size }}</label>
                             </div>
                         @endforeach
                     @endif
@@ -67,10 +70,10 @@
                         @php
                             $colors = explode(',', $product_detail->product_color);
                         @endphp
-                        @foreach ($colors as $color)
+                        @foreach ($colors as $index => $color)
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-1" name="color">
-                                <label class="custom-control-label" for="color-1">{{ $color }}</label>
+                                <input type="radio" class="custom-control-input" id="color-{{$index}}" name="color" value="{{$color}}">
+                                <label class="custom-control-label" for="color-{{$index}}">{{ $color }}</label>
                             </div>
                         @endforeach
                     @endif
@@ -83,14 +86,15 @@
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                        <input type="text" class="form-control bg-secondary text-center" value="1">
+                        <input type="text" class="form-control bg-secondary text-center" value="1" id="quantity">
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-plus">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <button onclick="addToCart({{ $product_detail->id }})" class="btn btn-primary px-3"><i
+                            class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                 </div>
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>

@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\CartController;
 
 // Route::get('/',function(){
 //     return view('admin.index');
@@ -52,10 +53,16 @@ Route::prefix('product')->group(function () {
     // Route::post('edit/image', [ProductController::class, 'editMultiImage'])->name('edit.image');
 
     Route::get('/delete/image/{id}', [ProductController::class, 'deleteMultiImage'])->name('delete.image');
-
 });
 
 Route::post('/edit/image', [ProductController::class, 'editMultiImage'])->name('edit.image');
- // Route::get('category', 'ListCategory')->name('category.list');
-    // Route::get('category/create', 'CreateCategory')->name('category.create');
-    // Route::post('category/create', 'StoreCategory')->name('category.store');
+// Route::get('category', 'ListCategory')->name('category.list');
+// Route::get('category/create', 'CreateCategory')->name('category.create');
+// Route::post('category/create', 'StoreCategory')->name('category.store');
+
+Route::controller(CartController::class)->group(function () {
+    Route::get('/cart', 'cartView')->name('cart');
+    Route::post('/add-to-cart', 'addToCart')->name('client.addToCart');
+    Route::get('/get-cart-product', 'getCart')->name('client.getCart');
+    // Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
+});
