@@ -34,25 +34,12 @@
                                     <td>{{ $item->category_name }}</td>
                                     <td>{{ $item->category_slug }}</td>
                                     <td>
-                                        @if ($item->status == 'active')
-                                            <span class="badge badge-success">Active</span>
-                                        @else
-                                            <span class="badge badge-danger">Inactive</span>
-                                        @endif
+                                        <input data-id="{{ $item->id }}" class="toggle-class" type="checkbox"
+                                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
+                                            data-on="Active" data-off="Inactive" {{ $item->status == "active" ? 'checked' : '' }}>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
-                                            @if ($item->status == 'inactive')
-                                                <a href="{{ route('category.inactive', ['id' => $item->id]) }}"
-                                                    class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top"
-                                                    title="" data-original-title="Active" href="#"><i
-                                                        class="fa-solid fa-thumbs-up"></i></a>
-                                            @else
-                                                <a href="{{ route('category.active', ['id' => $item->id]) }}"
-                                                    class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top"
-                                                    title="" data-original-title="Inactive" href="#"><i
-                                                        class="fa-solid fa-thumbs-down"></i></a>
-                                            @endif
                                             <a href="{{ route('category.edit', ['id' => $item->id]) }}"
                                                 class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top"
                                                 title="" data-original-title="Edit" href="#"><i

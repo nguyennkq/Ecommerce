@@ -49,6 +49,11 @@
                                 <i class="las la-minus"></i><span>List</span>
                             </a>
                         </li>
+                        <li class="">
+                            <a href="{{ route('category.deleted') }}">
+                                <i class="las la-minus"></i><span>Deleted</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="">
@@ -72,6 +77,11 @@
                         <li class="">
                             <a href="{{ route('product.index') }}">
                                 <i class="las la-minus"></i><span>List</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('product.deleted') }}">
+                                <i class="las la-minus"></i><span>Deleted</span>
                             </a>
                         </li>
                     </ul>

@@ -20,11 +20,16 @@ Route::prefix('category')->group(function () {
     Route::match(['get', 'post'], 'edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 
-    Route::get('inactive/{id}', [CategoryController::class, 'inactive'])->name('category.inactive');
-    Route::get('active/{id}', [CategoryController::class, 'active'])->name('category.active');
+    Route::get('/deleted', [CategoryController::class, 'deleted'])->name('category.deleted');
+    Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
+
+    Route::get('delete/permanently/{id}', [CategoryController::class, 'permanentlyDelete'])->name('category.permanently.delete');
 
     Route::get('{slug}', [CategoryController::class, 'productCategory'])->name('category.product');
+
+
 });
+Route::get('/changeStatusCategory', [CategoryController::class, 'changeStatus'])->name('changeStatusCategory');
 
 Route::prefix('banner')->group(function () {
     Route::get('/', [BannerController::class, 'index'])->name('banner.index');
@@ -35,8 +40,9 @@ Route::prefix('banner')->group(function () {
     Route::match(['get', 'post'], 'edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
     Route::get('delete/{id}', [BannerController::class, 'delete'])->name('banner.delete');
 
-    Route::get('inactive/{id}', [BannerController::class, 'inactive'])->name('banner.inactive');
-    Route::get('active/{id}', [BannerController::class, 'active'])->name('banner.active');
+    Route::get('delete/permanently/{id}', [BannerController::class, 'permanentlyDelete'])->name('banner.permanently.delete');
+
+    Route::get('/changeStatusBanner', [BannerController::class, 'changeStatus'])->name('changeStatusBanner');
 });
 
 Route::prefix('product')->group(function () {
@@ -45,11 +51,16 @@ Route::prefix('product')->group(function () {
     Route::match(['get', 'post'], 'edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::get('delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 
-    Route::get('inactive/{id}', [ProductController::class, 'inactive'])->name('product.inactive');
-    Route::get('active/{id}', [ProductController::class, 'active'])->name('product.active');
+    Route::get('/deleted', [ProductController::class, 'deleted'])->name('product.deleted');
+    Route::get('/restore/{id}', [ProductController::class, 'restore'])->name('product.restore');
+
+    Route::get('delete/permanently/{id}', [ProductController::class, 'permanentlyDelete'])->name('product.permanently.delete');
 
     Route::get('shop', [ProductController::class, 'shop'])->name('client.shop');
     Route::get('/product-detail/{slug}', [ProductController::class, 'productDetail'])->name('product.detail');
+
+    Route::get('/changeStatusProduct', [ProductController::class, 'changeStatus'])->name('changeStatusProduct');
+
 
     // Route::post('edit/image', [ProductController::class, 'editMultiImage'])->name('edit.image');
 
@@ -74,13 +85,13 @@ Route::prefix('coupon')->group(function () {
     Route::match(['get', 'post'], 'edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
     Route::get('delete/{id}', [CouponController::class, 'delete'])->name('coupon.delete');
 
-    Route::get('inactive/{id}', [CouponController::class, 'inactive'])->name('coupon.inactive');
-    Route::get('active/{id}', [CouponController::class, 'active'])->name('coupon.active');
 
     Route::get('/deleted', [CouponController::class, 'deleted'])->name('coupon.deleted');
     Route::get('/restore/{id}', [CouponController::class, 'restore'])->name('coupon.restore');
 
     Route::get('delete/permanently/{id}', [CouponController::class, 'permanentlyDelete'])->name('coupon.permanently.delete');
+
+    Route::get('/changeStatusCoupon', [CouponController::class, 'changeStatus'])->name('changeStatusCoupon');
 
 
 });

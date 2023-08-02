@@ -237,6 +237,52 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function deleted()
+    {
+        $product = Product::onlyTrashed()->get();
+        return view('admin.products.delete', compact('product'));
+    }
+
+    public function restore($id)
+    {
+        $softDeletedProduct = Product::onlyTrashed()->find($id);
+
+        if ($softDeletedProduct) {
+            $softDeletedProduct->restore();
+            $notification = array(
+                "message" => "Product restore successfully",
+                "alert-type" => "success",
+            );
+        } else {
+            $notification = array(
+                "message" => "Product restore failed",
+                "alert-type" => "error",
+            );
+        }
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function permanentlyDelete($id)
+    {
+        if ($id) {
+            $product = Product::where('id', $id);
+            $deleted = $product->forceDelete();
+            if ($deleted) {
+                $notification = array(
+                    "message" => "Deleted product successfully",
+                    "alert-type" => "success",
+                );
+            } else {
+                $notification = array(
+                    "message" => "Delete Product unsuccessful",
+                    "alert-type" => "error",
+                );
+            }
+        }
+        return redirect()->back()->with($notification);
+    }
+
     public function shop()
     {
         $products = Product::where('status', 'active')->get();
@@ -249,5 +295,16 @@ class ProductController extends Controller
         $product_id = $product_detail->id;
         $multiImage = MultiImage::where('product_id', $product_id)->get();
         return view('client.products.detail', compact('product_detail', 'multiImage'));
+    }
+
+
+    public function changeStatus(Request $request)
+    {
+
+        $product = Product::find($request->product_id);
+        $product->status = $request->status;
+        $product->save();
+
+        return response()->json(['success' => 'Status Change Successfully']);
     }
 }

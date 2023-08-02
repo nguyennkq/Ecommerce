@@ -5,8 +5,10 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Banner Deleted</h4>
+                        <h4 class="mb-3">List Product</h4>
                     </div>
+                    <a href="{{ route('product.add') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add
+                        Product</a>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -15,19 +17,34 @@
                         <thead>
                             <tr class="ligth">
                                 <th>#</th>
-                                <th>Title</th>
-                                <th>URL</th>
                                 <th>Image</th>
+                                <th>Name</th>
+                                <th>Slug</th>
+                                <th>Size</th>
+                                <th>Color</th>
+                                <th>Quantity</th>
+                                <th>Selling Price</th>
+                                <th>Dicount Price</th>
+                                <th>Description</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($banner as $key => $item)
+                            @foreach ($product as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $item->banner_title }}</td>
-                                    <td>{{ $item->banner_url }}</td>
+                                    <td><img width="100px" height="100px"
+                                            src="{{ $item->product_image ? '' . Storage::url($item->product_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
+                                            alt=""></td>
+                                    <td>{{ $item->product_name }}</td>
+                                    <td>{{ $item->product_slug }}</td>
+                                    <td>{{ $item->product_size }}</td>
+                                    <td>{{ $item->product_color }}</td>
+                                    <td>{{ $item->product_quantity }}</td>
+                                    <td>{{ $item->selling_price }}</td>
+                                    <td>{{ $item->discount_price }}</td>
+                                    <td>{{ $item->description }}</td>
                                     <td>
                                         @if ($item->status == 'active')
                                             <span class="badge badge-success">Active</span>
@@ -35,17 +52,14 @@
                                             <span class="badge badge-danger">Inactive</span>
                                         @endif
                                     </td>
-                                    <td><img width="100px" height="100px"
-                                            src="{{ $item->banner_image ? Storage::url($item->banner_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
-                                            alt=""></td>
+
                                     <td>
                                         <div class="d-flex align-items-center list-action">
-                                            <a href="{{ route('banner.restore', ['id' => $item->id]) }}"
+                                            <a href="{{ route('product.restore', ['id' => $item->id]) }}"
                                                 class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top"
                                                 title="" data-original-title="Restore" href="#"><i
                                                     class="fa-solid fa-trash-arrow-up"></i></a>
-                                            <a id="delete"
-                                                href="{{ route('banner.permanently.delete', ['id' => $item->id]) }}"
+                                            <a id="delete" href="{{ route('product.permanently.delete', ['id' => $item->id]) }}"
                                                 class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top"
                                                 title="" data-original-title="Delete" href="#"><i
                                                     class="ri-delete-bin-line mr-0"></i></a>

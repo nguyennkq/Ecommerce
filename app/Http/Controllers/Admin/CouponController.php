@@ -92,34 +92,6 @@ class CouponController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function active($id)
-    {
-        $activeCoupon = Coupon::findOrFail($id);
-        $activeCoupon->update([
-            'status' => 'inactive'
-        ]);
-
-        $notification = array(
-            "message" => "Coupon Inactive",
-            "alert-type" => "success",
-        );
-        return redirect()->back()->with($notification);
-    }
-
-    public function inactive($id)
-    {
-        $inactiveCoupon = Coupon::findOrFail($id);
-        $inactiveCoupon->update([
-            'status' => 'active'
-        ]);
-
-        $notification = array(
-            "message" => "Coupon Active",
-            "alert-type" => "success",
-        );
-        return redirect()->back()->with($notification);
-    }
-
     public function deleted()
     {
         $coupon = Coupon::onlyTrashed()->get();
@@ -164,5 +136,15 @@ class CouponController extends Controller
             }
         }
         return redirect()->back()->with($notification);
+    }
+
+    public function changeStatus(Request $request)
+    {
+
+        $coupon = Coupon::find($request->coupon_id);
+        $coupon->status = $request->status;
+        $coupon->save();
+
+        return response()->json(['success' => 'Status Change Successfully']);
     }
 }

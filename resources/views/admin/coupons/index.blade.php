@@ -30,32 +30,20 @@
                             @foreach ($coupon as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{$item->name}}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->discount }}</td>
                                     <td>{{ $item->start_date }}</td>
                                     <td>{{ $item->end_date }}</td>
                                     <td>
-                                        @if ($item->status == 'active')
-                                            <span class="badge badge-success">Active</span>
-                                        @else
-                                            <span class="badge badge-danger">Inactive</span>
-                                        @endif
+                                        <input data-id="{{ $item->id }}" class="toggle-class" type="checkbox"
+                                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
+                                            data-on="Active" data-off="Inactive"
+                                            {{ $item->status == 'active' ? 'checked' : '' }}>
                                     </td>
 
                                     <td>
                                         <div class="d-flex align-items-center list-action">
-                                            @if ($item->status == 'inactive')
-                                                <a href="{{ route('coupon.inactive', ['id' => $item->id]) }}"
-                                                    class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top"
-                                                    title="" data-original-title="Active" href="#"><i
-                                                        class="fa-solid fa-thumbs-up"></i></a>
-                                            @else
-                                                <a href="{{ route('coupon.active', ['id' => $item->id]) }}"
-                                                    class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top"
-                                                    title="" data-original-title="Inactive" href="#"><i
-                                                        class="fa-solid fa-thumbs-down"></i></a>
-                                            @endif
                                             <a href="{{ route('coupon.edit', ['id' => $item->id]) }}"
                                                 class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top"
                                                 title="" data-original-title="Edit" href="#"><i
@@ -78,47 +66,50 @@
 
     <script type="text/javascript">
         $(function() {
-          $('.toggle-class').change(function() {
-              var status = $(this).prop('checked') == true ? 'active' : 'inactive';
-              var id = $(this).data('id');
-              $.ajax({
-                  type: "GET",
-                  dataType: "json",
-                  url: '/changeStatus',
-                  data: {'status': status, 'id': id},
-                  success: function(data){
-                    // console.log(data.success)
+            $('.toggle-class').change(function() {
+                var status = $(this).prop('checked') == true ? 'active' : 'inactive';
+                var id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/changeStatus',
+                    data: {
+                        'status': status,
+                        'id': id
+                    },
+                    success: function(data) {
+                        // console.log(data.success)
 
-                      // Start Message
+                        // Start Message
 
-                  const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 3000
-                  })
-                  if ($.isEmptyObject(data.error)) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
 
-                          Toast.fire({
-                          type: 'success',
-                          title: data.success,
-                          })
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
 
-                  }else{
+                        } else {
 
-                 Toast.fire({
-                          type: 'error',
-                          title: data.error,
-                          })
-                      }
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
 
-                    // End Message
+                        // End Message
 
 
-                  }
-              });
-          })
+                    }
+                });
+            })
         })
-      </script>
+    </script>
 @endsection

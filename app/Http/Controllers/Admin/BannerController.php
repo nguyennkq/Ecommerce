@@ -100,34 +100,6 @@ class BannerController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function active($id)
-    {
-        $activeBanner = Banner::findOrFail($id);
-        $activeBanner->update([
-            'status' => 'inactive'
-        ]);
-
-        $notification = array(
-            "message" => "Banner Inactive",
-            "alert-type" => "success",
-        );
-        return redirect()->back()->with($notification);
-    }
-
-    public function inactive($id)
-    {
-        $inactiveBanner = Banner::findOrFail($id);
-        $inactiveBanner->update([
-            'status' => 'active'
-        ]);
-
-        $notification = array(
-            "message" => "Banner Active",
-            "alert-type" => "success",
-        );
-        return redirect()->back()->with($notification);
-    }
-
     public function deleted(){
         $banner = Banner::onlyTrashed()->get();
         return view('admin.banners.delete', compact('banner'));
@@ -150,5 +122,35 @@ class BannerController extends Controller
         }
 
         return redirect()->back()->with($notification);
+    }
+
+    public function permanentlyDelete($id)
+    {
+        if ($id) {
+            $banner = Banner::where('id', $id);
+            $deleted = $banner->forceDelete();
+            if ($deleted) {
+                $notification = array(
+                    "message" => "Deleted banner successfully",
+                    "alert-type" => "success",
+                );
+            } else {
+                $notification = array(
+                    "message" => "Delete banner unsuccessful",
+                    "alert-type" => "error",
+                );
+            }
+        }
+        return redirect()->back()->with($notification);
+    }
+
+    public function changeStatus(Request $request)
+    {
+
+        $banner = Banner::find($request->banner_id);
+        $banner->status = $request->status;
+        $banner->save();
+
+        return response()->json(['success' => 'Status Change Successfully']);
     }
 }

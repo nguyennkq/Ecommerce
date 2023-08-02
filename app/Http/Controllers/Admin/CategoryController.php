@@ -106,31 +106,47 @@ class CategoryController extends Controller
 
     }
 
-    public function active($id)
-    {
-        $activeCategory = Category::findOrFail($id);
-        $activeCategory->update([
-            'status' => 'inactive'
-        ]);
+    public function deleted(){
+        $category = Category::onlyTrashed()->get();
+        return view('admin.categories.delete', compact('category'));
+    }
 
-        $notification = array(
-            "message" => "Category Inactive",
-            "alert-type" => "success",
-        );
+    public function restore($id){
+        $softDeletedCategory = Category::onlyTrashed()->find($id);
+
+        if($softDeletedCategory){
+            $softDeletedCategory->restore();
+            $notification = array(
+                "message" => "Category restore successfully",
+                "alert-type" => "success",
+            );
+        }else {
+            $notification = array(
+                "message" => "Category restore failed",
+                "alert-type" => "error",
+            );
+        }
+
         return redirect()->back()->with($notification);
     }
 
-    public function inactive($id)
+    public function permanentlyDelete($id)
     {
-        $inactiveCategory = Category::findOrFail($id);
-        $inactiveCategory->update([
-            'status' => 'active'
-        ]);
-
-        $notification = array(
-            "message" => "Category Active",
-            "alert-type" => "success",
-        );
+        if ($id) {
+            $category = Category::where('id', $id);
+            $deleted = $category->forceDelete();
+            if ($deleted) {
+                $notification = array(
+                    "message" => "Deleted category successfully",
+                    "alert-type" => "success",
+                );
+            } else {
+                $notification = array(
+                    "message" => "Delete category unsuccessful",
+                    "alert-type" => "error",
+                );
+            }
+        }
         return redirect()->back()->with($notification);
     }
 
@@ -139,5 +155,15 @@ class CategoryController extends Controller
 
         $products = Product::where('category_id', $productCate->id)->where('status','active')->get();
         return view('client.products.product-category', compact("products"));
+    }
+
+    public function changeStatus(Request $request)
+    {
+
+        $category = Category::find($request->category_id);
+        $category->status = $request->status;
+        $category->save();
+
+        return response()->json(['success' => 'Status Change Successfully']);
     }
 }

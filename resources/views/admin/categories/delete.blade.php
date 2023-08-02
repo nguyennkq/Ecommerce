@@ -5,10 +5,10 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">List Banner</h4>
+                        <h4 class="mb-3">List Category</h4>
                     </div>
-                    <a href="{{ route('banner.add') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add
-                        Banner</a>
+                    <a href="{{ route('category.add') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add
+                        Category</a>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -18,34 +18,36 @@
                             <tr class="ligth">
                                 <th>#</th>
                                 <th>Image</th>
-                                <th>Title</th>
-                                <th>URL</th>
+                                <th>Name</th>
+                                <th>Slug</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($banner as $key => $item)
+                            @foreach ($category as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td><img width="100px" height="100px"
-                                            src="{{ $item->banner_image ? Storage::url($item->banner_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
+                                            src="{{ $item->category_image ? '' . Storage::url($item->category_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
                                             alt=""></td>
-                                    <td>{{ $item->banner_title }}</td>
-                                    <td>{{ $item->banner_url }}</td>
+                                    <td>{{ $item->category_name }}</td>
+                                    <td>{{ $item->category_slug }}</td>
                                     <td>
-                                        <input data-id="{{ $item->id }}" class="toggle-class" type="checkbox"
-                                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
-                                            data-on="Active" data-off="Inactive" {{ $item->status == "active" ? 'checked' : '' }}>
+                                        @if ($item->status == 'active')
+                                            <span class="badge badge-success">Active</span>
+                                        @else
+                                            <span class="badge badge-danger">Inactive</span>
+                                        @endif
                                     </td>
-
                                     <td>
                                         <div class="d-flex align-items-center list-action">
-                                            <a href="{{ route('banner.edit', ['id' => $item->id]) }}"
+                                            <a href="{{ route('category.restore', ['id' => $item->id]) }}"
                                                 class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top"
-                                                title="" data-original-title="Edit" href="#"><i
-                                                    class="ri-pencil-line mr-0"></i></a>
-                                            <a id="delete" href="{{ route('banner.delete', ['id' => $item->id]) }}"
+                                                title="" data-original-title="Restore" href="#"><i
+                                                    class="fa-solid fa-trash-arrow-up"></i></a>
+                                            <a id="delete"
+                                                href="{{ route('category.permanently.delete', ['id' => $item->id]) }}"
                                                 class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top"
                                                 title="" data-original-title="Delete" href="#"><i
                                                     class="ri-delete-bin-line mr-0"></i></a>
