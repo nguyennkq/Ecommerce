@@ -105,7 +105,7 @@
                                         <label for="inputProductTitle" class="form-label">Multiple Image</label>
                                         <input class="form-control image-file" name="image[]" type="file" id="multiImg"
                                             multiple="">
-                                        <div class="row" id="preview_img"></div>
+                                        <img width="100px" id="preview_img" src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg">
                                     </div>
                                 </div>
                                 <div class="col-md-12">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\PermissionController;
 
 // Route::get('/',function(){
 //     return view('admin.index');
@@ -92,7 +93,20 @@ Route::prefix('coupon')->group(function () {
     Route::get('delete/permanently/{id}', [CouponController::class, 'permanentlyDelete'])->name('coupon.permanently.delete');
 
     Route::get('/changeStatusCoupon', [CouponController::class, 'changeStatus'])->name('changeStatusCoupon');
+});
 
+
+Route::prefix('permission')->group(function () {
+    Route::get('/', [PermissionController::class, 'index'])->name('permission.index');
+    Route::match(['get', 'post'], 'add', [PermissionController::class, 'add'])->name('permission.add');
+    Route::match(['get', 'post'], 'edit/{id}', [PermissionController::class, 'edit'])->name('permission.edit');
+    Route::get('delete/{id}', [PermissionController::class, 'delete'])->name('permission.delete');
+
+
+    Route::get('/deleted', [PermissionController::class, 'deleted'])->name('permission.deleted');
+    Route::get('/restore/{id}', [PermissionController::class, 'restore'])->name('permission.restore');
+
+    Route::get('delete/permanently/{id}', [PermissionController::class, 'permanentlyDelete'])->name('permission.permanently.delete');
 
 });
 

@@ -64,52 +64,5 @@
         <!-- Page end  -->
     </div>
 
-    <script type="text/javascript">
-        $(function() {
-            $('.toggle-class').change(function() {
-                var status = $(this).prop('checked') == true ? 'active' : 'inactive';
-                var id = $(this).data('id');
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: '/changeStatus',
-                    data: {
-                        'status': status,
-                        'id': id
-                    },
-                    success: function(data) {
-                        // console.log(data.success)
 
-                        // Start Message
-
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 3000
-                        })
-                        if ($.isEmptyObject(data.error)) {
-
-                            Toast.fire({
-                                type: 'success',
-                                title: data.success,
-                            })
-
-                        } else {
-
-                            Toast.fire({
-                                type: 'error',
-                                title: data.error,
-                            })
-                        }
-
-                        // End Message
-
-
-                    }
-                });
-            })
-        })
-    </script>
 @endsection

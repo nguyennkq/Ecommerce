@@ -16,24 +16,24 @@ class PermissionSeeder extends Seeder
         DB::table('permissions')->insert(
             [
                 [
-                    'name' => 'name1',
-                    'group_name' => 'group_name_1',
+                    'name' => 'Add Product',
+                    'group_name' => 'Product',
                 ],
                 [
-                    'name' => 'name2',
-                    'group_name' => 'group_name_2',
+                    'name' => 'Add Category',
+                    'group_name' => 'Category',
                 ],
                 [
-                    'name' => 'name3',
-                    'group_name' => 'group_name_3',
+                    'name' => 'Add Banner',
+                    'group_name' => 'Banner',
                 ],
                 [
-                    'name' => 'name4',
-                    'group_name' => 'group_name_4',
+                    'name' => 'Add Coupon',
+                    'group_name' => 'Coupon',
                 ],
                 [
-                    'name' => 'name5',
-                    'group_name' => 'group_name_5',
+                    'name' => 'Edit Product',
+                    'group_name' => 'Product',
                 ]
             ]
         );
