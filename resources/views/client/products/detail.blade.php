@@ -46,7 +46,10 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">${{ $product_detail->discount_price }}</h3>
+                <div class="d-flex">
+                    <h3 class="font-weight-semi-bold mb-4">${{ $product_detail->discount_price }}</h3>
+                    <h6 class="text-muted ml-2"><del>${{ $product_detail->selling_price }}</del></h6>
+                </div>
                 <p class="mb-4">{{ $product_detail->description }}</p>
                 <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>

@@ -21,7 +21,7 @@
                             <th>Quantity</th>
                             <th>Color</th>
                             <th>Size</th>
-                            {{-- <th>Total</th> --}}
+                            <th>Subtotal</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
@@ -31,11 +31,11 @@
                 </table>
             </div>
             <div class="col-lg-4">
-                <form class="mb-5" action="">
+                <form class="mb-5" action="" id="couponBox">
                     <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
+                        <input type="text" class="form-control p-4" placeholder="Coupon Code" id="coupon_name">
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
+                            <a type="submit" onclick="applyCoupon()" class="btn btn-primary">Apply Coupon</a>
                         </div>
                     </div>
                 </form>
@@ -43,23 +43,10 @@
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
                     </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$150</h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
-                        </div>
+                    <div id="calculation" class="card-body">
+
                     </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$160</h5>
-                        </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
-                    </div>
+                    <a class="btn btn-block btn-primary my-3 py-3" href="{{route('checkout')}}">Proceed To Checkout</a>
                 </div>
             </div>
         </div>

@@ -27,8 +27,6 @@ Route::prefix('category')->group(function () {
     Route::get('delete/permanently/{id}', [CategoryController::class, 'permanentlyDelete'])->name('category.permanently.delete');
 
     Route::get('{slug}', [CategoryController::class, 'productCategory'])->name('category.product');
-
-
 });
 Route::get('/changeStatusCategory', [CategoryController::class, 'changeStatus'])->name('changeStatusCategory');
 
@@ -77,6 +75,19 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart', 'cartView')->name('cart');
     Route::post('/add-to-cart', 'addToCart')->name('client.addToCart');
     Route::get('/get-cart-product', 'getCart')->name('client.getCart');
+
+    Route::get('/cart-decrement/{rowId}', 'cartDecrement');
+    Route::get('/cart-increment/{rowId}', 'cartIncrement');
+
+    Route::post('/coupon-apply', [CartController::class, 'applyCoupon']);
+    Route::get('/coupon-remove', [CartController::class, 'couponRemove']);
+
+    Route::get('/calculation', [CartController::class, 'Calculation'])->name('calculation');
+    Route::get('/count-cart', [CartController::class, 'countCart'])->name('count.cart');
+    Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCart'])->name('client.removeCart');
+
+    Route::get('/checkout', [CartController::class, 'Checkout'])->name('checkout');
+
     // Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 });
 
@@ -107,7 +118,4 @@ Route::prefix('permission')->group(function () {
     Route::get('/restore/{id}', [PermissionController::class, 'restore'])->name('permission.restore');
 
     Route::get('delete/permanently/{id}', [PermissionController::class, 'permanentlyDelete'])->name('permission.permanently.delete');
-
 });
-
-
