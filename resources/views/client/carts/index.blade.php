@@ -1,5 +1,8 @@
 @extends('client.layouts.app')
 @section('content')
+@section('title')
+    Cart
+@endsection
     <!-- Page Header Start -->
     <div class="container-fluid">
         <div class="d-inline-flex px-xl-5">

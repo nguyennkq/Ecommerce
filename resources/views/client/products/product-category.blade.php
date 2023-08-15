@@ -1,5 +1,8 @@
 @extends('client.layouts.app')
 @section('content')
+@section('title')
+    {{$productCate->category_name}} Category
+@endsection
     <!-- Page Header Start -->
     <div class="container-fluid">
         <div class="d-inline-flex px-xl-5">
@@ -166,7 +169,7 @@
                             <div class="card product-item border-0 mb-4">
                                 <div
                                     class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img class="img-fluid w-100"
+                                    <img class="w-100" height="300px"
                                         src="{{ $item->product_image ? Storage::url($item->product_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
                                         alt="">
                                 </div>
@@ -181,8 +184,8 @@
                                     <a href="{{ route('product.detail', ['slug' => $item->product_slug]) }}"
                                         class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
                                         Detail</a>
-                                    <a href="" class="btn btn-sm text-dark p-0"><i
-                                            class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                    <button onclick="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
                                 </div>
                             </div>
                         </div>

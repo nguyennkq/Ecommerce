@@ -154,7 +154,7 @@ class CategoryController extends Controller
         $productCate = Category::where('category_slug', $slug)->first();
 
         $products = Product::where('category_id', $productCate->id)->where('status','active')->get();
-        return view('client.products.product-category', compact("products"));
+        return view('client.products.product-category', compact("products","productCate"));
     }
 
     public function changeStatus(Request $request)

@@ -1,5 +1,8 @@
 @extends('client.layouts.app')
 @section('content')
+@section('title')
+    {{$product_detail->product_name}}
+@endsection
     <!-- Page Header Start -->
     <div class="container-fluid">
         <div class="d-inline-flex px-xl-5">
@@ -16,8 +19,11 @@
             <div class="col-lg-5 pb-5">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner border">
+                        <div class="carousel-item active">
+                            <img class="w-100" src="{{ $product_detail->product_image ? Storage::url($product_detail->product_image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}" alt="Product Image" height="400px">
+                        </div>
                         @foreach ($multiImage as $key => $item)
-                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                            <div class="carousel-item">
                                 <img class="w-100"
                                     src="{{ $item->image ? Storage::url($item->image) : 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg' }}"
                                     alt="Image" height="400px">
